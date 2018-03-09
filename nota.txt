@@ -1,0 +1,5 @@
+1./ uso xampp como servidor local
+2./ accedo a http://localhost/angular1.2/node_modules/angular/index.html
+    para correr el proyecto
+3./ "bachillerato" se llama la base de datos
+4./ usuario=esteba password=12345
