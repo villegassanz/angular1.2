@@ -24,8 +24,8 @@ class AlumnoController extends Controller
 		 
 	}
 	///////////////////////////////////////
-	public function login($user, $password){
-		$alumno = $this->alumno->login($user, $password);
+	public function login($correo, $password){
+		$alumno = $this->alumno->login($correo, $password);
 		if(!$alumno){
 			return Response::json(['response' => 'user no encontrado'],404);
 		}
@@ -47,14 +47,7 @@ class AlumnoController extends Controller
 		return Response::json($alumno,200);
 	} 
 	//alumno inhabilitado
-	public function getAlumnobyIdInhabilitado($id){
-		$alumno = $this->alumno->getAlumnobyIdInhabilitado($id);
-		if(!$alumno){
-			return Response::json(['response' => 'Alumno no encontrado'],404);
-		}
-		return Response::json($alumno,200);
-	}
-
+	
 	public function saveAlumno(){
 		try{
     	  return $this->alumno->saveAlumno();
@@ -71,31 +64,6 @@ class AlumnoController extends Controller
 		return Response::json($alumno, 200);
 	}
 
-	
-
-	public function alumnosPorPlantel($idPlantel){
-		$alumno = $this->alumno->alumnosPorPlantel($idPlantel);
-		if(!$alumno){
-			return Response::json(['response' => 'Alumno no existe'], 404);
-		}
-		return Response::json($alumno,200);
-	}
-
-	public function getBusqedaPersonalizadaAlumno($miClave, $miValor){
-		$alumno = $this->alumno->getBusqedaPersonalizadaAlumno($miClave, $miValor);
-		if(!$alumno){
-			return Response::json(['response' => 'Alumno con los parametros no existe'], 404);
-		}
-		return Response::json($alumno,200);
-	}
-	public function alumnosSegunPlantelConNrolista($idPlantel){
-		$alumno = $this->alumno->alumnosSegunPlantelConNrolista($idPlantel);
-		if(!$alumno){
-			return Response::json(['response' => 'Alumno no existe'], 404);
-		}
-		return Response::json($alumno,200);
-	}
-	//DAR DE BAJ UN ALUMNO
 	public function deleteUsuario($id){
         $alumno = $this->alumno->deleteUsuario($id);
         if(!$alumno){
@@ -111,36 +79,6 @@ class AlumnoController extends Controller
         }
         return Response::json($alumno, 200);
     }
-    //URL DE LA SECUNDARIAS DISPONIBLES
-    public function getAllSecundarias(){
-		$alumno = $this->alumno->getAllSecundarias();
-		if(!$alumno){
-			return Response::json(['response' => 'Secundaria no existe'], 404);
-		}
-		return Response::json($alumno,200);
-	}
-	//OBTENER LOS ALUMNOS DE UN DOCENTE SEGUN SU MATERIA
-	public function getAlumnosPorDocenteYMateria($id_docente, $id_materia){
-		$alumno = $this->alumno->getAlumnosPorDocenteYMateria($id_docente, $id_materia);
-		if(!$alumno){
-			return Response::json(['response' => 'Secundaria no existe'], 404);
-		}
-		return Response::json($alumno,200);
-	}
-	public function getAllAlumnosParaPasarSemestre(){
-		$alumno = $this->alumno->getAllAlumnosParaPasarSemestre();
-		if(!$alumno){
-			return Response::json(['response' => 'Alumnos no existen'], 404);
-		}
-		return Response::json($alumno,200);
-	}
-	public function llamarProceEstatusCali(){
-		try{ 
-    	  $valor = $this->alumno->llamarProceEstatusCali();
-    	  return Response::json(['response' => $valor],200);
-      } catch(\Illuminate\Database\QueryException $ex){
-      	return Response::json(['response' => $ex->getCode()],500);
-      }
-	}
+
 	
 }
